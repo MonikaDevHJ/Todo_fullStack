@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  # Express Backend
+  backend:
+    build: .
+    container_name: todo-backend
+    ports:
+      - "4000:3000" # Exposes port 3000 to the host machine
+    volumes:  
+      - .:/app
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/todo_database?schema=public
+    depends_on:
+      - db
+
+  # PostgreSQL Database
+  db:
+    image: postgres:13
+    container_name: todo-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=todo_database
+    ports:
+      - "5433:5432"

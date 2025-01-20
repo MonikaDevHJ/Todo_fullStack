@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                // Better suited for modern Node.js apps
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,                    // We don't emit files in Next.js (it handles that)
+    "esModuleInterop": true,
+    "module": "commonjs",              // Use commonjs for backend code compatibility
+    "moduleResolution": "node",        // Use Node's resolution mechanism
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",                 // Keep JSX as-is for Next.js
+    "incremental": true,
+    "outDir": "./dist",                // Where to put compiled JS files
+    "baseUrl": ".",                    // Set the base directory for relative paths
+    "paths": {
+      "@/*": ["./src/*"]               // Set path alias for frontend code
+    }
+  },
+  "include": [
+    "next-env.d.ts",                   // Includes Next.js types
+    "src/**/*.ts",                     // Include all .ts files in src
+    "src/**/*.tsx"                     // Include all .tsx files in src
+  ],
+  "exclude": ["node_modules"]
+}
