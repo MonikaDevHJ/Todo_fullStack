@@ -1,20 +1,19 @@
+import express from 'express';  // 1️⃣ Import Express (Hire the waiter)
+import cors from 'cors';        // 2️⃣ Import CORS (Allow frontend to talk to backend)
+import dotenv from 'dotenv';     // 3️⃣ Load environment variables
+import taskRoutes from './taskRoutes';  // 4️⃣ Import routes (Where orders go)
 
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import taskRoutes from './taskRoutes';
+dotenv.config(); // Load environment variables from .env file
 
-dotenv.config(); // Load environment variables
+const app = express();  // 5️⃣ Create an Express app (Waiter is ready!)
+const port = process.env.PORT || 5000;  // 6️⃣ Set the server port (Where the restaurant is located)
 
-const app = express();
-const port = process.env.PORT || 5000;
+app.use(cors()); // 7️⃣ Allow frontend to talk to backend
+app.use(express.json()); // 8️⃣ Allow Express to read JSON requests
 
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-app.use(express.json()); // Parse JSON request bodies
-
-// Task Routes
-app.use('/api/tasks', taskRoutes);
+// 9️⃣ Define API routes for tasks
+app.use('/api/tasks', taskRoutes);  // (When someone orders, send them to the kitchen)
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);  // 1️⃣0️⃣ Start the server
 });
